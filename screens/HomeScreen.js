@@ -12,15 +12,16 @@ import {
 } from "react-native";
 
 import { MonoText } from "../components/StyledText";
-import { fetchProduct } from "../store/singleProduct";
+import { fetchSingleProduct } from "../store/singleProduct";
+import { fetchAllProducts } from "../store/allProducts";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.singleProduct);
+  const products = useSelector(state => state.allProducts);
   useEffect(() => {
-    dispatch(fetchProduct());
+    dispatch(fetchAllProducts());
   }, []);
-  console.log("Products!", products);
+  console.log("Products", products);
   return (
     <View style={styles.container}>
       <ScrollView

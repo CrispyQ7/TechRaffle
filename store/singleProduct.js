@@ -4,11 +4,11 @@ const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
 
 const getSingleProduct = product => ({ type: GET_SINGLE_PRODUCT, product });
 
-export const fetchProduct = (/*productId*/) => async dispatch => {
+export const fetchSingleProduct = productName => async dispatch => {
   try {
     const data = await db
       .collection("products")
-      .doc("Coconut with Bluetooth")
+      .doc(productName)
       .get();
     //console.log("My data! ", data);
     dispatch(getSingleProduct(data.data()));
@@ -26,5 +26,3 @@ export default (state = {}, action) => {
       return state;
   }
 };
-
-//1573912800
