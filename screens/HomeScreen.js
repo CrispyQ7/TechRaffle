@@ -20,7 +20,7 @@ export default function HomeScreen() {
   useEffect(() => {
     dispatch(fetchProduct());
   }, []);
-  //console.log("Products!", products);
+  console.log("Products!", products);
   return (
     <View style={styles.container}>
       <ScrollView

@@ -7,7 +7,7 @@ const getSingleProduct = product => ({ type: GET_SINGLE_PRODUCT, product });
 export const fetchProduct = (/*productId*/) => async dispatch => {
   try {
     const data = await db
-      .collection("raffleItem")
+      .collection("products")
       .doc("Coconut with Bluetooth")
       .get();
     //console.log("My data! ", data);
@@ -26,3 +26,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+//1573912800
