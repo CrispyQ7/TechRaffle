@@ -10,10 +10,11 @@ export const fetchAllProducts = () => async dispatch => {
       .collection("products")
       .where("countdown", ">=", 1)
       .get();
+    console.log("MUH DATA!!!", data);
     dispatch(
       getAllProducts(
-        data.forEach(ele => {
-          ele.data();
+        data.docs.map(ele => {
+          return ele.data();
         })
       )
     );
@@ -25,7 +26,7 @@ export const fetchAllProducts = () => async dispatch => {
 export default (state = [], action) => {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
-      return { ...state, state: action.products };
+      return action.products;
     default:
       return state;
   }

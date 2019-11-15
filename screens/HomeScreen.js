@@ -21,7 +21,7 @@ export default function HomeScreen() {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
-  console.log("Products", products);
+  console.log("Products!", products);
   return (
     <View style={styles.container}>
       <ScrollView

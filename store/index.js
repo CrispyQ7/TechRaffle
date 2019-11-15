@@ -11,10 +11,11 @@ const reducer = combineReducers({
 });
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+  applyMiddleware(thunkMiddleware /*, createLogger({ collapsed: true })*/)
 );
+
 const store = createStore(reducer, middleware);
 
 export default store;
-export * from "./singleProduct";
 export * from "./allProducts";
+export * from "./singleProduct";
