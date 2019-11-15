@@ -1,33 +1,16 @@
 import * as firebase from "firebase";
 import "firebase/firestore";
 
-var firebaseConfig = {
-  apiKey: "AIzaSyC5HZvEUjg_yQzxjnfDDUB-923EhUar_bM",
-  authDomain: "rafflewave.firebaseapp.com",
-  databaseURL: "https://rafflewave.firebaseio.com",
-  projectId: "rafflewave",
-  storageBucket: "rafflewave.appspot.com",
-  messagingSenderId: "627639815497",
-  appId: "1:627639815497:web:8404b48ddb380afdbdde98",
-  measurementId: "G-YE5YRPH68C"
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_AMAZON_FIREBASE_API_KEY,
+  authDomain: "techraffle.firebaseapp.com",
+  databaseURL: "https://techraffle.firebaseio.com",
+  projectId: "techraffle",
+  storageBucket: "techraffle.appspot.com",
+  messagingSenderId: "649573189210",
+  appId: "1:649573189210:web:d258ca0819675d25037a63"
 };
 
 const app = firebase.initializeApp(firebaseConfig);
 
 export var db = firebase.firestore(app);
-
-//const gertRef = db.collection("users").doc("gerturde");
-//console.log(gertRef);
-
-// export const getGert = gertRef
-//   .get()
-//   .then(gert => {
-//     if (!gert.exists) {
-//       console.log("Oh no! no gerturdes live here!");
-//     } else {
-//       //console.log("Document data:", gert.data());
-//     }
-//   })
-//   .catch(err => {
-//     console.log("Error getting gert", err);
-//   });
