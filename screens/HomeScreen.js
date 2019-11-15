@@ -1,5 +1,6 @@
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Image,
   Platform,
@@ -11,8 +12,15 @@ import {
 } from "react-native";
 
 import { MonoText } from "../components/StyledText";
+import { fetchProduct } from "../store/singleProduct";
 
 export default function HomeScreen() {
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.singleProduct);
+  useEffect(() => {
+    dispatch(fetchProduct());
+  }, []);
+  //console.log("Products!", products);
   return (
     <View style={styles.container}>
       <ScrollView
@@ -32,15 +40,12 @@ export default function HomeScreen() {
 
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
-
           <Text style={styles.getStartedText}>Get started by opening</Text>
-
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           >
             <MonoText>screens/HomeScreen.js</MonoText>
           </View>
-
           <Text style={styles.getStartedText}>
             Change this text and your app will automatically reload!
           </Text>
