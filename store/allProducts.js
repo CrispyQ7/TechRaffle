@@ -10,11 +10,10 @@ export const fetchAllProducts = () => async dispatch => {
       .collection("products")
       .where("countdown", ">=", 1)
       .get();
-    console.log("MUH DATA!!!", data);
     dispatch(
       getAllProducts(
-        data.docs.map(ele => {
-          return ele.data();
+        data.docs.map(doc => {
+          return { id: doc.id, data: doc.data() };
         })
       )
     );
@@ -31,3 +30,7 @@ export default (state = [], action) => {
       return state;
   }
 };
+
+//const doc = await db.collection('products').doc('your id').get()
+//const doc = await db.doc('products/yourid/collectionName/docName').get()
+//return doc which you can do doc.data()

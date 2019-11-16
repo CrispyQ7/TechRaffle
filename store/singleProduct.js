@@ -10,7 +10,6 @@ export const fetchSingleProduct = productName => async dispatch => {
       .collection("products")
       .doc(productName)
       .get();
-    //console.log("My data! ", data);
     dispatch(getSingleProduct(data.data()));
   } catch (error) {
     console.error("error fetching single product, ", error);
@@ -20,7 +19,6 @@ export const fetchSingleProduct = productName => async dispatch => {
 export default (state = {}, action) => {
   switch (action.type) {
     case GET_SINGLE_PRODUCT:
-      //console.log("WOW! action.product is! : ", action.product);
       return action.product;
     default:
       return state;
