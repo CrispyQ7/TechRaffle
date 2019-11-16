@@ -18,19 +18,14 @@ import { fetchAllProducts } from "../store/allProducts";
 import AllProducts from "../components/AllProducts";
 
 export default function HomeScreen() {
-  // const dispatch = useDispatch();
-  // const products = useSelector(state => state.allProducts);
-  // useEffect(() => {
-  //   dispatch(fetchAllProducts());
-  // }, []);
-  // console.log("Products!", products);
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.welcomeContainer}>
+        <AllProducts />
+        {/* <View style={styles.welcomeContainer}>
           <Image
             source={
               __DEV__
@@ -40,7 +35,7 @@ export default function HomeScreen() {
             style={styles.welcomeImage}
           />
         </View>
-        <AllProducts />
+
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
           <Text style={styles.getStartedText}>Get started by opening</Text>
@@ -59,8 +54,7 @@ export default function HomeScreen() {
             <Text style={styles.helpLinkText}>
               Help, it didn’t automatically reload!
             </Text>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity> */}
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
