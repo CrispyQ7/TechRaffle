@@ -30,7 +30,8 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.welcomeContainer}>
+        <AllProducts />
+        {/* <View style={styles.welcomeContainer}>
           <Image
             source={
               __DEV__
@@ -40,7 +41,6 @@ export default function HomeScreen() {
             style={styles.welcomeImage}
           />
         </View>
-        <AllProducts />
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
           <Text style={styles.getStartedText}>Get started by opening</Text>
@@ -60,7 +60,7 @@ export default function HomeScreen() {
               Help, it didn’t automatically reload!
             </Text>
           </TouchableOpacity>
-        </View>
+          </View> */}
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>

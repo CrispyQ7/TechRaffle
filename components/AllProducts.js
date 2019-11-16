@@ -3,7 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAllProducts } from "../store/allProducts";
 
-import { View, Text } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right
+} from "native-base";
 
 export default function AllProducts(props) {
   const dispatch = useDispatch();
@@ -12,15 +25,48 @@ export default function AllProducts(props) {
     dispatch(fetchAllProducts());
   }, []);
   console.log("Products!", products);
-  return (
-    <View>
-      {!products.length ? (
-        <Text>No Products</Text>
-      ) : (
-        products.map(product => {
-          return <Text>{product.id}</Text>;
-        })
-      )}
-    </View>
+  return !products.length ? (
+    <Text>No Products</Text>
+  ) : (
+    products.map(product => {
+      return (
+        <React.Fragment key={product.id}>
+          <Container>
+            <Header />
+            <Content>
+              <Card>
+                <CardItem>
+                  <Left>
+                    <Body>
+                      <Text>{product.id}</Text>
+                      <Text note>GeekyAnts</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody></CardItem>
+                <CardItem>
+                  <Left>
+                    <Button transparent>
+                      <Icon active name="thumbs-up" />
+                      <Text>{product.data.entries}</Text>
+                    </Button>
+                  </Left>
+                  <Body>
+                    <Button transparent>
+                      <Icon active name="chatbubbles" />
+                      <Text>4 Comments</Text>
+                    </Button>
+                  </Body>
+                  <Right>
+                    <Text>11h ago</Text>
+                  </Right>
+                </CardItem>
+              </Card>
+            </Content>
+          </Container>
+          ); } }
+        </React.Fragment>
+      );
+    })
   );
 }
