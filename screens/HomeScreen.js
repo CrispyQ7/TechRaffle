@@ -15,13 +15,15 @@ import { MonoText } from "../components/StyledText";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { fetchAllProducts } from "../store/allProducts";
 
+import AllProducts from "../components/AllProducts";
+
 export default function HomeScreen() {
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.allProducts);
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, []);
-  console.log("Products!", products);
+  // const dispatch = useDispatch();
+  // const products = useSelector(state => state.allProducts);
+  // useEffect(() => {
+  //   dispatch(fetchAllProducts());
+  // }, []);
+  // console.log("Products!", products);
   return (
     <View style={styles.container}>
       <ScrollView
@@ -38,7 +40,7 @@ export default function HomeScreen() {
             style={styles.welcomeImage}
           />
         </View>
-
+        <AllProducts />
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
           <Text style={styles.getStartedText}>Get started by opening</Text>
