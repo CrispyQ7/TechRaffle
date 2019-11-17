@@ -8,7 +8,7 @@ export const fetchAllProducts = () => async dispatch => {
   try {
     const data = await db
       .collection("products")
-      .where("countdown", ">=", 1)
+      .where("completed", "==", false)
       .get();
     dispatch(
       getAllProducts(

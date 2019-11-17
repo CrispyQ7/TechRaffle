@@ -20,55 +20,20 @@ import AllProducts from "../components/AllProducts";
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
+      <View style={styles.tabBarInfoContainer}>
+        <Text style={styles.tabBarInfoText}>Live Raffles!</Text>
+      </View>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+      //style={styles.container}
+      //contentContainerStyle={styles.contentContainer}
       >
         <AllProducts />
-        {/* <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require("../assets/images/robot-dev.png")
-                : require("../assets/images/robot-prod.png")
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          >
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload!
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity> */}
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}
-        >
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
+      <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+        <MonoText style={styles.codeHighlightText}>
+          navigation/MainTabNavigator.js
+        </MonoText>
       </View>
     </View>
   );
@@ -99,6 +64,39 @@ function DevelopmentModeNotice() {
       </Text>
     );
   }
+}
+
+{
+  /* <View style={styles.welcomeContainer}>
+          <Image
+            source={
+              __DEV__
+                ? require("../assets/images/robot-dev.png")
+                : require("../assets/images/robot-prod.png")
+            }
+            style={styles.welcomeImage}
+          />
+        </View>
+
+        <View style={styles.getStartedContainer}>
+          <DevelopmentModeNotice />
+          <Text style={styles.getStartedText}>Get started by opening</Text>
+          <View
+            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+          >
+            <MonoText>screens/HomeScreen.js</MonoText>
+          </View>
+          <Text style={styles.getStartedText}>
+            Change this text and your app will automatically reload!
+          </Text>
+        </View>
+
+        <View style={styles.helpContainer}>
+          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+            <Text style={styles.helpLinkText}>
+              Help, it didn’t automatically reload!
+            </Text>
+          </TouchableOpacity> */
 }
 
 function handleLearnMorePress() {
@@ -163,7 +161,7 @@ const styles = StyleSheet.create({
   },
   tabBarInfoContainer: {
     position: "absolute",
-    bottom: 0,
+    top: 0,
     left: 0,
     right: 0,
     ...Platform.select({

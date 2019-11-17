@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAllProducts } from "../store/allProducts";
 
-import { View } from "react-native";
+import { countDownTimer } from "../utilities";
+
+import { View, Image } from "react-native";
 
 import {
   Container,
@@ -23,12 +25,22 @@ import {
 export default function AllProducts(props) {
   const dispatch = useDispatch();
   const products = useSelector(state => state.allProducts);
+  // const now = new Date().getTime() / 1000;
+  // console.log(now);
+  const [time, setTime] = useState(new Date().getTime() / 1000);
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      const now = new Date();
+      console.log(now.getTime());
+      setTime(now.getTime());
+    }, 1000);
+  }, [time]);
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
-  console.log("Products!", products);
+  //console.log("Products!", products);
   return (
-    <View>
+    <React.Fragment>
       {!products.length ? (
         <Text>No Products</Text>
       ) : (
@@ -41,34 +53,35 @@ export default function AllProducts(props) {
                   <Card>
                     <CardItem>
                       <Left>
-                        {/* <Thumbnail source={{ uri: "Image URL" }} /> */}
+                        <Thumbnail source={{ uri: product.data.imageUrl }} />
                         <Body>
                           <Text>{product.id}</Text>
-                          <Text note>GeekyAnts</Text>
+                          {/* <Text note>GeekyAnts</Text> */}
                         </Body>
                       </Left>
                     </CardItem>
                     <CardItem cardBody>
-                      {/* <Image
-                        source={{ uri: "Image URL" }}
+                      <Image
+                        source={{ uri: product.data.imageUrl }}
                         style={{ height: 200, width: null, flex: 1 }}
-                      /> */}
+                      />
                     </CardItem>
                     <CardItem>
                       <Left>
                         <Button transparent>
-                          <Icon active name="thumbs-up" />
-                          <Text>{product.data.entries} Entries</Text>
+                          <Icon active name="ticket" type="Foundation" />
+                          <Text>{product.data.entries} </Text>
                         </Button>
                       </Left>
                       <Body>
                         <Button transparent>
-                          <Icon active name="chatbubbles" />
-                          <Text>4 Comments</Text>
+                          <Text>value</Text>
+                          <Icon active name="dollar" type="FontAwesome" />
+                          <Text>{product.data.price}</Text>
                         </Button>
                       </Body>
                       <Right>
-                        <Text>11h ago</Text>
+                        <Text>{time - product.data.endTime.seconds}</Text>
                       </Right>
                     </CardItem>
                   </Card>
@@ -78,6 +91,6 @@ export default function AllProducts(props) {
           );
         })
       )}
-    </View>
+    </React.Fragment>
   );
 }
