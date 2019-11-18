@@ -31,21 +31,19 @@ export default function AllProducts(props) {
   useEffect(() => {
     const interval = setTimeout(() => {
       const now = new Date();
-      //console.log(now.toLocaleTimeString());
-      setTime(Math.floor(now.getTime() / 1000));
+      setTime(now.getTime() / 1000);
+      //set the timeout to ~100 for better accuracy
     }, 1000);
   }, [time]);
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
-  //console.log("Products!", typeof products.data.endTime);
   return (
     <React.Fragment>
       {!products.length ? (
         <Text>No Products</Text>
       ) : (
         products.map(product => {
-          //console.log("Products!", product.data.endTime.seconds);
           return (
             <React.Fragment key={product.id}>
               <Container>
@@ -83,12 +81,12 @@ export default function AllProducts(props) {
                       </Body>
                       <Right>
                         <Text>
-                          {console.log(
+                          {/* {console.log(
                             "ENDTIME: ",
                             product.data.endTime.seconds,
                             "CLOCKTIME: ",
                             time
-                          )}
+                          )} */}
                           {timeFormatter(product.data.endTime.seconds - time)}
                         </Text>
                       </Right>
