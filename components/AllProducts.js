@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchAllProducts } from "../store/allProducts";
+import { fetchAllProducts, ticketSubmit } from "../store/allProducts";
 
 import { timeFormatter } from "../utilities";
-
+import { db } from "../firebase/config";
 import { View, Image } from "react-native";
 
 import {
@@ -54,44 +54,48 @@ export default function AllProducts(props) {
               return (
                 <React.Fragment key={product.id}>
                   <Card>
-                    <TouchableOpacity onPress={() => handlePress(product.id)}>
-                      <CardItem>
-                        <Left>
-                          <Thumbnail source={{ uri: product.data.imageUrl }} />
-                          <Body>
-                            <Text>{product.id}</Text>
-                            {/* <Text note>GeekyAnts</Text> */}
-                          </Body>
-                        </Left>
-                      </CardItem>
-                      <CardItem cardBody>
-                        <Image
-                          source={{ uri: product.data.imageUrl }}
-                          style={{ height: 200, width: null, flex: 1 }}
-                        />
-                      </CardItem>
-                      <CardItem>
-                        <Left>
-                          <Button transparent>
-                            <Icon active name="ticket" type="Foundation" />
-                            <Text>{product.data.entries} </Text>
-                          </Button>
-                        </Left>
+                    {/* <TouchableOpacity onPress={() => handlePress(product.id)}> */}
+                    <CardItem>
+                      <Left>
+                        <Thumbnail source={{ uri: product.data.imageUrl }} />
                         <Body>
-                          <Button transparent>
-                            <Text>value</Text>
-                            <Icon active name="dollar" type="FontAwesome" />
-                            <Text>{product.data.price}</Text>
-                          </Button>
+                          <Text>{product.id}</Text>
+                          {/* <Text note>GeekyAnts</Text> */}
                         </Body>
-                        <Right>
-                          <Text>
-                            {timeFormatter(product.data.endTime.seconds - time)}
-                          </Text>
-                        </Right>
-                      </CardItem>
-                    </TouchableOpacity>
-                    <Button block success>
+                      </Left>
+                    </CardItem>
+                    <CardItem cardBody>
+                      <Image
+                        source={{ uri: product.data.imageUrl }}
+                        style={{ height: 200, width: null, flex: 1 }}
+                      />
+                    </CardItem>
+                    <CardItem>
+                      <Left>
+                        <Button transparent>
+                          <Icon active name="ticket" type="Foundation" />
+                          <Text>{product.data.entries} </Text>
+                        </Button>
+                      </Left>
+                      <Body>
+                        <Button transparent>
+                          <Text>value</Text>
+                          <Icon active name="dollar" type="FontAwesome" />
+                          <Text>{product.data.price}</Text>
+                        </Button>
+                      </Body>
+                      <Right>
+                        <Text>
+                          {timeFormatter(product.data.endTime.seconds - time)}
+                        </Text>
+                      </Right>
+                    </CardItem>
+                    {/* </TouchableOpacity> */}
+                    <Button
+                      block
+                      success
+                      onPress={() => dispatch(ticketSubmit(product.id))}
+                    >
                       <Text>Submit Ticket!</Text>
                     </Button>
                   </Card>

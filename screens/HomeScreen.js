@@ -24,11 +24,11 @@ export default function HomeScreen() {
 
       <AllProducts />
 
-      <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-        <MonoText style={styles.codeHighlightText}>
+      {/* <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+        {/* <MonoText style={styles.codeHighlightText}>
           navigation/MainTabNavigator.js
-        </MonoText>
-      </View>
+        </MonoText> 
+      </View> */}
     </React.Fragment>
   );
 }
