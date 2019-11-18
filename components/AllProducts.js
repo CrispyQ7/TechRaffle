@@ -27,14 +27,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default function AllProducts(props) {
   const dispatch = useDispatch();
 
-  const [time, setTime] = useState(new Date().getTime());
-  useEffect(() => {
-    const interval = setTimeout(() => {
-      const now = new Date();
-      setTime(now.getTime() / 1000);
-      //set the timeout to ~100 for better accuracy
-    }, 1000);
-  }, [time]);
+  // const [time, setTime] = useState(new Date().getTime());
+  // useEffect(() => {
+  //   const interval = setTimeout(() => {
+  //     const now = new Date();
+  //     setTime(now.getTime() / 1000);
+  //     //set the timeout to ~100 for better accuracy
+  //   }, 1000);
+  // }, [time]);
 
   const products = useSelector(state => state.allProducts);
   useEffect(() => {
@@ -50,6 +50,7 @@ export default function AllProducts(props) {
             <Text>No Products</Text>
           ) : (
             products.map(product => {
+              console.log(product);
               return (
                 <React.Fragment key={product.id}>
                   <Card>
@@ -85,11 +86,14 @@ export default function AllProducts(props) {
                         </Body>
                         <Right>
                           <Text>
-                            {timeFormatter(product.data.endTime.seconds - time)}
+                            {/* {timeFormatter(product.data.endTime.seconds - time)} */}
                           </Text>
                         </Right>
                       </CardItem>
                     </TouchableOpacity>
+                    <Button block success>
+                      <Text>Submit Ticket!</Text>
+                    </Button>
                   </Card>
                 </React.Fragment>
               );

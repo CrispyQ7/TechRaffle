@@ -17,23 +17,19 @@ import AllProducts from "../components/AllProducts";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <React.Fragment>
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>Live Raffles!</Text>
       </View>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <AllProducts />
-      </ScrollView>
+
+      <AllProducts />
 
       <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
         <MonoText style={styles.codeHighlightText}>
           navigation/MainTabNavigator.js
         </MonoText>
       </View>
-    </View>
+    </React.Fragment>
   );
 }
 

@@ -6,13 +6,11 @@ const getAllProducts = products => ({ type: GET_ALL_PRODUCTS, products });
 
 export const fetchAllProducts = () => async dispatch => {
   try {
-    const data = await db
-      .collection("products")
-      .where("completed", "==", false)
-      .get();
+    const data = await db.collection("products").get();
     dispatch(
       getAllProducts(
         data.docs.map(doc => {
+          // console.log(doc.id);
           return { id: doc.id, data: doc.data() };
         })
       )
