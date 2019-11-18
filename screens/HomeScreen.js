@@ -12,8 +12,6 @@ import {
 } from "react-native";
 
 import { MonoText } from "../components/StyledText";
-import { fetchSingleProduct } from "../store/singleProduct";
-import { fetchAllProducts } from "../store/allProducts";
 
 import AllProducts from "../components/AllProducts";
 
@@ -24,8 +22,8 @@ export default function HomeScreen() {
         <Text style={styles.tabBarInfoText}>Live Raffles!</Text>
       </View>
       <ScrollView
-      //style={styles.container}
-      //contentContainerStyle={styles.contentContainer}
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
       >
         <AllProducts />
       </ScrollView>

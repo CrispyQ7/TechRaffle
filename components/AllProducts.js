@@ -21,6 +21,7 @@ import {
   Body,
   Right
 } from "native-base";
+import SingleProduct from "./SingleProduct";
 
 export default function AllProducts(props) {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export default function AllProducts(props) {
                         </Body>
                       </Left>
                     </CardItem>
-                    <CardItem cardBody>
+                    <CardItem cardBody onPress={() => handlePress(product.id)}>
                       <Image
                         source={{ uri: product.data.imageUrl }}
                         style={{ height: 200, width: null, flex: 1 }}
@@ -82,12 +83,6 @@ export default function AllProducts(props) {
                       </Body>
                       <Right>
                         <Text>
-                          {/* {console.log(
-                            "ENDTIME: ",
-                            product.data.endTime.seconds,
-                            "CLOCKTIME: ",
-                            time
-                          )} */}
                           {timeFormatter(product.data.endTime.seconds - time)}
                         </Text>
                       </Right>
@@ -101,4 +96,9 @@ export default function AllProducts(props) {
       )}
     </React.Fragment>
   );
+}
+
+function handlePress(id) {
+  console.log("i made it!", id);
+  //<SingleProduct id={id} />;
 }
