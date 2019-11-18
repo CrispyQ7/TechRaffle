@@ -22,6 +22,7 @@ import {
   Right
 } from "native-base";
 import SingleProduct from "./SingleProduct";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function AllProducts(props) {
   const dispatch = useDispatch();
@@ -42,63 +43,65 @@ export default function AllProducts(props) {
 
   return (
     <React.Fragment>
-      {!products.length ? (
-        <Text>No Products</Text>
-      ) : (
-        products.map(product => {
-          return (
-            <React.Fragment key={product.id}>
-              <Container>
-                <Header />
-                <Content>
+      <Container>
+        <Header />
+        <Content>
+          {!products.length ? (
+            <Text>No Products</Text>
+          ) : (
+            products.map(product => {
+              return (
+                <React.Fragment key={product.id}>
                   <Card>
-                    <CardItem>
-                      <Left>
-                        <Thumbnail source={{ uri: product.data.imageUrl }} />
+                    <TouchableOpacity onPress={() => handlePress(product.id)}>
+                      <CardItem>
+                        <Left>
+                          <Thumbnail source={{ uri: product.data.imageUrl }} />
+                          <Body>
+                            <Text>{product.id}</Text>
+                            {/* <Text note>GeekyAnts</Text> */}
+                          </Body>
+                        </Left>
+                      </CardItem>
+                      <CardItem cardBody>
+                        <Image
+                          source={{ uri: product.data.imageUrl }}
+                          style={{ height: 200, width: null, flex: 1 }}
+                        />
+                      </CardItem>
+                      <CardItem>
+                        <Left>
+                          <Button transparent>
+                            <Icon active name="ticket" type="Foundation" />
+                            <Text>{product.data.entries} </Text>
+                          </Button>
+                        </Left>
                         <Body>
-                          <Text>{product.id}</Text>
-                          {/* <Text note>GeekyAnts</Text> */}
+                          <Button transparent>
+                            <Text>value</Text>
+                            <Icon active name="dollar" type="FontAwesome" />
+                            <Text>{product.data.price}</Text>
+                          </Button>
                         </Body>
-                      </Left>
-                    </CardItem>
-                    <CardItem cardBody onPress={() => handlePress(product.id)}>
-                      <Image
-                        source={{ uri: product.data.imageUrl }}
-                        style={{ height: 200, width: null, flex: 1 }}
-                      />
-                    </CardItem>
-                    <CardItem>
-                      <Left>
-                        <Button transparent>
-                          <Icon active name="ticket" type="Foundation" />
-                          <Text>{product.data.entries} </Text>
-                        </Button>
-                      </Left>
-                      <Body>
-                        <Button transparent>
-                          <Text>value</Text>
-                          <Icon active name="dollar" type="FontAwesome" />
-                          <Text>{product.data.price}</Text>
-                        </Button>
-                      </Body>
-                      <Right>
-                        <Text>
-                          {timeFormatter(product.data.endTime.seconds - time)}
-                        </Text>
-                      </Right>
-                    </CardItem>
+                        <Right>
+                          <Text>
+                            {timeFormatter(product.data.endTime.seconds - time)}
+                          </Text>
+                        </Right>
+                      </CardItem>
+                    </TouchableOpacity>
                   </Card>
-                </Content>
-              </Container>
-            </React.Fragment>
-          );
-        })
-      )}
+                </React.Fragment>
+              );
+            })
+          )}
+        </Content>
+      </Container>
     </React.Fragment>
   );
 }
 
 function handlePress(id) {
-  console.log("i made it!", id);
-  //<SingleProduct id={id} />;
+  //console.log("i made it!", id);
+  <SingleProduct id={id} />;
 }

@@ -11,5 +11,6 @@ export const timeFormatter = time => {
   if (days === 0) return `${hours}:${minutes}:${seconds}`;
   else if (hours === 0) return `${minutes}:${seconds}`;
   else if (minutes === 0) return `only ${seconds} left!`;
+  else if (time <= 0) return "Raffle expired!";
   else return `${days}:${hours}:${minutes}:${seconds}`;
 };
