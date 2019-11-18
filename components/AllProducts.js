@@ -24,9 +24,7 @@ import {
 
 export default function AllProducts(props) {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.allProducts);
-  // const now = new Date().getTime() / 1000;
-  // console.log(now);
+
   const [time, setTime] = useState(new Date().getTime());
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -35,9 +33,12 @@ export default function AllProducts(props) {
       //set the timeout to ~100 for better accuracy
     }, 1000);
   }, [time]);
+
+  const products = useSelector(state => state.allProducts);
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
+
   return (
     <React.Fragment>
       {!products.length ? (
