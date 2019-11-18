@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAllProducts } from "../store/allProducts";
 
-import { countDownTimer } from "../utilities";
+import { timeFormatter } from "../utilities";
 
 import { View, Image } from "react-native";
 
@@ -27,24 +27,25 @@ export default function AllProducts(props) {
   const products = useSelector(state => state.allProducts);
   // const now = new Date().getTime() / 1000;
   // console.log(now);
-  const [time, setTime] = useState(new Date().getTime() / 1000);
+  const [time, setTime] = useState(new Date().getTime());
   useEffect(() => {
     const interval = setTimeout(() => {
       const now = new Date();
-      console.log(now.getTime());
-      setTime(now.getTime());
+      //console.log(now.toLocaleTimeString());
+      setTime(Math.floor(now.getTime() / 1000));
     }, 1000);
   }, [time]);
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
-  //console.log("Products!", products);
+  //console.log("Products!", typeof products.data.endTime);
   return (
     <React.Fragment>
       {!products.length ? (
         <Text>No Products</Text>
       ) : (
         products.map(product => {
+          //console.log("Products!", product.data.endTime.seconds);
           return (
             <React.Fragment key={product.id}>
               <Container>
@@ -81,7 +82,15 @@ export default function AllProducts(props) {
                         </Button>
                       </Body>
                       <Right>
-                        <Text>{time - product.data.endTime.seconds}</Text>
+                        <Text>
+                          {console.log(
+                            "ENDTIME: ",
+                            product.data.endTime.seconds,
+                            "CLOCKTIME: ",
+                            time
+                          )}
+                          {timeFormatter(product.data.endTime.seconds - time)}
+                        </Text>
                       </Right>
                     </CardItem>
                   </Card>

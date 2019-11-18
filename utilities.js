@@ -1,3 +1,11 @@
+export const timeFormatter = time => {
+  var days = Math.floor(time / (60 * 60 * 24));
+  var hours = Math.floor((time % (60 * 60 * 24)) / (60 * 60));
+  var minutes = Math.floor((time % (60 * 60)) / 60);
+  var seconds = Math.floor(time % 60);
+  return `${days}:${hours}:${minutes}:${seconds}`;
+};
+
 // // Set the date we're counting down to
 // var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
 
